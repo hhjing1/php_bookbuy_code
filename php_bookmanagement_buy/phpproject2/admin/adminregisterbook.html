@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册图书</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
+</head>
+<body>
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+                <!-- Logo & Information Panel-->
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content">
+                            <div class="logo">
+                                <h1>欢迎注册图书信息</h1>
+                            </div>
+                            <p>图书管理系统</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Panel    -->
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content">
+                            <div class="form-group">
+                                <input id="title" class="input-material" type="text" name="title" placeholder="请输入图书名称" >
+                                <div class="invalid-feedback">
+                                    图书名必须在2~20位之间
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input id="newprice" class="input-material" type="number" name="newprice" placeholder="请输入现在价格"   >
+                                <div class="invalid-feedback">
+                                    新价格必须在1~18位之间
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input id="oldprice" class="input-material" type="number" name="oldprice" placeholder="请输入原来价格"   >
+                                <div class="invalid-feedback">
+                                   旧价格必须在1~18位之间
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input id="salenumber" class="input-material" type="number" name="salenumber" placeholder="请输入售出数量"   >
+                                <div class="invalid-feedback">
+                                    售出数量必须在1~18位之间
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input id="img" class="input-material" type="text" name="img" placeholder="请输入图片网址"   >
+                                <div class="invalid-feedback">
+                                    输入正确的网址
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input name="kind" type="radio" value=故事书 checked />故事书
+                                <input name="kind" type="radio" value=科幻书 />科幻书
+                                <input name="kind" type="radio" value=散文集 />散文集
+                                <div class="invalid-feedback">
+                                    必须选择一项
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <button id="regbtn" type="button" name="registerSubmit" class="btn btn-primary">注册</button>
+                            </div>
+                            <!--                            <small>已有账号?</small><a href="index.html" class="signup">&nbsp;登录</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../js/Treatment.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/bootstrap.min.js"></script>
+<script type="text/javascript" src="../layui/layui.js"></script>
+<link href="../layui/css/layui.css" rel="stylesheet" type="text/css" />
+
+<script>
+
+    $(function(){
+        /*错误class  form-control is-invalid
+        正确class  form-control is-valid*/
+        var flagName=false;
+        var flagPas=false;
+        var flagPass=false;
+        var flagphone=false;
+        var flagemail=false;
+        /*验证图书名*/
+        var name,passWord,passWords,phone,email;
+
+
+        $("#title").change(function(){
+            name=$("#title").val();
+            if(name.length<2||name.length>20){
+                $("#title").removeClass("form-control is-valid")
+                $("#title").addClass("form-control is-invalid");
+                flagName=false;
+            }else{
+                $("#title").removeClass("form-control is-invalid")
+                $("#title").addClass("form-control is-valid");
+                flagName=true;
+            }
+        })
+        /*验证现在价格*/
+        $("#newprice").change(function(){
+            passWord=$("#newprice").val();
+            if(passWord.length<1||passWord.length>18){
+                $("#newprice").removeClass("form-control is-valid")
+                $("#newprice").addClass("form-control is-invalid");
+                flagPas=false;
+            }else{
+                $("#newprice").removeClass("form-control is-invalid")
+                $("#newprice").addClass("form-control is-valid");
+                flagPas=true;
+            }
+        })
+        /*验证就得价格*/
+        $("#oldprice").change(function(){
+            passWords=$("#oldprice").val();
+            if((passWords.length<1||passWords.length>18)){
+                $("#oldprice").removeClass("form-control is-valid")
+                $("#oldprice").addClass("form-control is-invalid");
+                flagPass=false;
+            }else{
+                $("#oldprice").removeClass("form-control is-invalid")
+                $("#oldprice").addClass("form-control is-valid");
+                flagPass=true;
+            }
+        })
+        //确认售出数的格式
+        $("#salenumber").change(function(){
+            phone=$("#salenumber").val();
+            if((phone.length<1||phone.length>18)){
+                $("#salenumber").removeClass("form-control is-valid")
+                $("#salenumber").addClass("form-control is-invalid");
+                flagphone=false;
+            }else{
+                $("#salenumber").removeClass("form-control is-invalid")
+                $("#salenumber").addClass("form-control is-valid");
+                flagphone=true;
+            }
+        })
+
+      //检查img
+        $("#img").change(function(){
+            email=$("#img").val();
+            if((email.length<1||email.length>18)){
+                $("#img").removeClass("form-control is-valid")
+                $("#img").addClass("form-control is-invalid");
+                flagemail=false;
+            }else{
+                $("#img").removeClass("form-control is-invalid")
+                $("#img").addClass("form-control is-valid");
+                flagemail=true;
+            }
+        })
+        var wen=false;
+        $("#regbtn").click(function(){
+            if(!flagName){
+                $("#title").addClass("form-control is-invalid");
+            }
+            if(!flagPas){
+                $("#newprice").addClass("form-control is-invalid");
+            }
+            if(!flagPass){
+                $("#oldprice").addClass("form-control is-invalid");
+            }
+            if(!flagphone){
+                $("#salenumber").addClass("form-control is-invalid");
+            }
+            if(!flagemail){
+                $("#img").addClass("form-control is-invalid");
+            }
+            if(flagName&&flagPas&&flagPass&&flagphone&&flagemail) {
+                var cont = $("input").serialize();
+                $.ajax({
+                    url: '../actionphp/checkregisterbook.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: cont,
+                    success: function (data) {
+                        wen = data.kind;
+                        name=$("#title").val();
+                        if(name.length<2||name.length>20){
+                            $("#title").removeClass("form-control is-valid")
+                            $("#title").addClass("form-control is-invalid");
+                            flagName=false;
+                        }else {
+                            $("#title").removeClass("form-control is-invalid")
+                            $("#title").addClass("form-control is-valid");
+                            flagName = true;
+                            if (flagName && flagPas && flagPass && flagphone && flagemail && wen == "true") {
+                                //检验没有此用户。开始进行信息的添加
+                                $.ajax({
+                                    url: '../actionphp/addbook.php',
+                                    type: 'post',
+                                    dataType: 'json',
+                                    data: cont,
+                                    success: function (data) {
+                                        var wen1=data.kind1;
+                                        if(wen1=="true")
+                                        {
+                                            // localStorage.setItem("name", name);
+                                            // localStorage.setItem("passWord", passWord);
+                                            alert("恭喜注册成功");
+                                            document.getElementById("title").value = "";
+                                            document.getElementById("newprice").value="";
+                                            document.getElementById("oldprice").value="";
+                                            document.getElementById("img").value="";
+                                            document.getElementById("salenumber").value="";
+                                            // location = "index.html"
+                                        }
+                                    },
+                                error :function(data){
+                                        alert("添加失败");
+                                }});
+
+                            } else {
+                                alert('此商品名已经注册过了。请修改商品名称');
+                                document.getElementById("title").value = "";
+                                document.getElementById("title").focus();
+                            }
+                        }
+                    }
+                });
+            }
+        })
+    })
+</script>
+</body>
+</html>
